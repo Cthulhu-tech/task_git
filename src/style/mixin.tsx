@@ -10,9 +10,9 @@ export const Input = styled.input
 `
 outline: none;
 padding: 5px 10px;
-border: 1px solid black;
 ${(props:InputType) => props?.props?.width && `width: ${props?.props?.width}px;`}
 ${(props:InputType) => props?.props?.height && `height: ${props?.props?.height }px;`}
+${(props:InputType) => props?.props?.border && `border: 1px solid ${props?.props?.border};`}
 ${(props:InputType) => props?.props?.background && `background-color: ${props?.props?.background};`}
 font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 `
@@ -30,8 +30,10 @@ export const Button = styled.button
 `
 border: none;
 outline: none;
+cursor: pointer;
 ${(props:ButtonType) => props?.props?.color && `color: ${props?.props?.color };`}
 ${(props:ButtonType) => props?.props?.width && `width: ${props?.props?.width}px;`}
 ${(props:ButtonType) => props?.props?.height && `height: ${props?.props?.height}px;`}
+${(props:InputType) => props?.props?.border && `border: 1px solid ${props?.props?.border};`}
 ${(props:ButtonType) => props?.props?.background && `background-color: ${props?.props?.background};`}
 `

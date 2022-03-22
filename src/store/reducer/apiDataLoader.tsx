@@ -1,19 +1,18 @@
+import { ReducerDataLoader, urlParams } from "../../../type/type";
 import { dataFetch } from "../actions/apiDataLoader";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState:ReducerDataLoader = {
 
-    data: [],
-    load: false
-
+    data: []
+    
 }
 
-export const DataLoader = (state = initialState, action: PayloadAction<string>) => {
+export const DataLoader = (state = initialState, action: PayloadAction<urlParams>) => {
 
     switch (action.type) {
-
         case 'loadData':
-            return {data: dataFetch(action.payload), load: true}
+            return {data: dataFetch(action)}
         default:
             return state;
     }
