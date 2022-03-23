@@ -46,8 +46,14 @@ export type ReducerDataLoader = {
 
 export type urlParams = {
 
-    page?: string,
-    repoName: string,
+    PageConvert?: string,
+    repository: string,
     owner: string,
+
+}
+
+export type DataState = {
+
+    dataLoad: ReducerDataLoader
 
 }

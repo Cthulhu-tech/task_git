@@ -8,6 +8,7 @@ min-height: 59px;
 align-items: center;
 justify-content: space-around;
 border-bottom: 1px solid gray;
+
 @media screen and (max-width: 576px){
     flex-direction: column;
 }

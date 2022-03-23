@@ -1,9 +1,12 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { createStore } from "@reduxjs/toolkit";
+import { applyMiddleware, combineReducers, createStore } from "@reduxjs/toolkit";
+import { composeWithDevTools } from "redux-devtools-extension";
 import { DataLoader } from "./apiDataLoader";
+import thunk from "redux-thunk";
+
 
 export const store = createStore(
     combineReducers({
-        dataLoad: DataLoader
-    })
+        dataLoad: DataLoader,
+    }),
+    composeWithDevTools(applyMiddleware(thunk))
 );

@@ -8,4 +8,10 @@ export const GlobalStyle = createGlobalStyle
     padding: 0;
 
 }
+
+a{
+
+    text-decoration: none;
+
+}
 `
