@@ -4,7 +4,7 @@ import { dataFetch } from "../../store/asyncActions/dataForks";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export const HeaderComponents = () => {
 

@@ -2,7 +2,7 @@ import { PagenationContainer, ResultContainer } from "./resultStyle";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { dataFetch } from "../../store/asyncActions/dataForks";
 import { DataView } from "../../components/dataView/dataView";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataState, urlParams } from "../../type/type";
 import { Button, Image, Paragraph } from "../../style/mixin";
@@ -20,10 +20,10 @@ export const ResultPage = () => {
     const owner = searchParams.get("owner");
     const page = Number(searchParams.get("page"));
     const repository = searchParams.get("repository");
-    const data  = useSelector((state:{dataLoad: ForksData, linkGet: string[]}) => state);
+    const data  = useSelector((state:{dataLoad: ForksData, linkGet: {link: string}}) => state);
 
     const nextPage = () => {
-        if(page && owner && repository)
+        if(page && owner && repository && Number(data.linkGet.link) > page)
             PageSwiting(page + 1);
     }
 
@@ -46,19 +46,23 @@ export const ResultPage = () => {
     }
 
     const Pagenation = useCallback(() => {
-        const prev = data.linkGet;
-        const last = data.linkGet;
-        console.log(last, prev);
+
+        const last = Number(data.linkGet.link)
+
         return  <PagenationContainer>
+                    {page > 1 &&
                     <Button
-                        
+                        className={page <= 1 ? 'btn-error' : ''}
                         onClick={prevPage}
                         props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
-                    >{"<"}</Button>
+                    >{"<"}</Button>}
+                    
+                    {last >= page &&
                     <Button
                         onClick={nextPage}
                         props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
-                    >{">"}</Button>
+                    >{">"}</Button>}
+
                 </PagenationContainer>
 
     },[data]);

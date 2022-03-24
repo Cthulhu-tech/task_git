@@ -4,6 +4,7 @@ import { FooterComponent } from "../footer/footer";
 import { HeaderComponents } from "../header/header";
 import { Main } from "./layoutStyle";
 
+
 export const Loyout = () => {
 
     return  <>
