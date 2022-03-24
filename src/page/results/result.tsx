@@ -18,7 +18,7 @@ export const ResultPage = () => {
     const owner = searchParams.get("owner");
     const page = Number(searchParams.get("page"));
     const repository = searchParams.get("repository");
-    const data = useSelector((state:DataState) => state.dataLoad.data);
+    const data = useSelector((state:DataState) => state);
 
     const nextPage = () => {
         if(page && owner && repository)
@@ -56,7 +56,7 @@ export const ResultPage = () => {
                     >{">"}</Button>
                 </PagenationContainer>
 
-    },[data]);
+    },[]);
 
     const FirstLoadData = () => {
 
@@ -68,6 +68,7 @@ export const ResultPage = () => {
     }
 
     useEffect(() => {
+
         if(load)
             FirstLoadData();
 

@@ -7,8 +7,7 @@ import { useEffect } from "react";
 
 export const DataView = () => {
 
-    const data = useSelector((state:{dataLoad: ForksData}) => state.dataLoad.data);
-    const dataLength = data.length;
+    const data = useSelector((state:{dataLoad: ForksData}) => state.dataLoad);
 
 
     useEffect(() => {
@@ -20,7 +19,7 @@ export const DataView = () => {
     const AllData = () => {
         
         return  <DataContainer>
-                    {data.map(info => {
+                    {data.data.map(info => {
                             return  <DataUrlContainer key={info.id} href={info.html_url}>
                                         <DataInfoContainer>
                                             <Paragraph props={{size: 16}}>forks name: {info.full_name}</Paragraph>
@@ -43,10 +42,11 @@ export const DataView = () => {
                     <LoadWave/>
                     <LoadWave/>
                     <LoadWave/>
+                    <LoadWave/>
                 </LoadContainer>
 
     }
 
-    return dataLength > 0 ? <AllData/> : <Load/>
+    return data.load ?  <AllData/> : <Load/>;
 
 }

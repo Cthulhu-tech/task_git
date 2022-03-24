@@ -1,4 +1,4 @@
-import { addData } from "../reducer/apiDataLoader";
+import { addData, checkData } from "../reducer/apiDataLoader";
 import { urlParams } from "../../type/type"
 
 export const dataFetch = (payload: urlParams) => {
@@ -10,6 +10,7 @@ export const dataFetch = (payload: urlParams) => {
         page = 1;
     }
     return (dispatch:any) => {
+        dispatch(checkData(""));
         fetch(`https://api.github.com/repos/${owner}/${repoName}/forks?per_page=10&page=${page}`,
         {
             method: 'GET',

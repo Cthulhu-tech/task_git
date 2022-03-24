@@ -12,8 +12,13 @@ min-height: calc(100vh - 141px);
 
 export const PagenationContainer = styled.div
 `
-width: 100%;
+left: 0;
+bottom: 0;
 display: flex;
+padding: 10px;
+position: sticky;
+background-color: white;
+width: calc(100% - 20px);
 justify-content: space-evenly;
 `
 

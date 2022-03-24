@@ -41,6 +41,7 @@ export type UseSelectorData = {
 export type ReducerDataLoader = {
 
     data: [],
+    load: boolean,
 
 }
 

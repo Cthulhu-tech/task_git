@@ -17,6 +17,7 @@ border-radius: 10px;
 width: calc(100% - 40px);
 border: 1px solid #e7e8ec;
 justify-content: space-between;
+box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
 
     &:hover{
         background-color: rgb(237,238,240);
@@ -44,12 +45,45 @@ text-decoration: none;
 
 export const LoadContainer = styled.div
 `
-width: 100%;
+width: 240px;
+height: 100vh;
+display: flex;
+align-items: center;
+justify-content: space-between;
 `
 
 export const LoadWave = styled.div
 `
-width: clamp (5px; 10%; 10px);
-height: clamp (5px; 10vh; 10px);
+width: 5px;
+height: 80px;
+border-radius: 10px;
 background-color: black;
+    &:nth-child(1){
+        animation: -.6s linear 1s infinite alternate loadLinePuls;
+    }
+    &:nth-child(2){
+        animation: -.5s linear 1s infinite alternate loadLinePuls;
+    }
+    &:nth-child(3){
+        animation: -.4s linear 1s infinite alternate loadLinePuls;
+    }
+    &:nth-child(4){
+        animation: -.3s linear 1s infinite alternate loadLinePuls;
+    }
+    &:nth-child(5){
+        animation: -.2s linear 1s infinite alternate loadLinePuls;
+    }
+    &:nth-child(6){
+        animation: -.1s linear 1s infinite alternate loadLinePuls;
+    }
+@keyframes loadLinePuls {
+    0%{
+        height: 100px;
+        background-color: #808080;
+    }
+    50%{
+        height: 10px;
+        background-color: #e0e0e0;
+    }
+}
 `

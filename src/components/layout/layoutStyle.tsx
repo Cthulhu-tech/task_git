@@ -2,12 +2,17 @@ import styled from "styled-components"
 
 export const Header = styled.header
 `
+top: 0;
+left: 0;
 width: 100%;
 display: flex;
+position: sticky;
 min-height: 59px;
 align-items: center;
+background-color: white;
 justify-content: space-around;
 border-bottom: 1px solid gray;
+box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
 
 @media screen and (max-width: 576px){
     flex-direction: column;

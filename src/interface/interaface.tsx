@@ -80,7 +80,8 @@ export interface ForksData {
                     default_branch:    string;
                     permissions:       Permissions;
                 }
-            ]
+            ],
+            load: boolean,
 }
 
 export interface Owner {
