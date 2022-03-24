@@ -10,13 +10,13 @@ export const DataInfoContainer = styled.div
 margin: 10px;
 padding: 10px;
 display: flex;
-flex-wrap: wrap;
+overflow: auto;
 min-height: 40px;
-align-items: center;
 border-radius: 10px;
+flex-direction: column;
+align-items: flex-start;
 width: calc(100% - 40px);
 border: 1px solid #e7e8ec;
-justify-content: space-between;
 box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
 
     &:hover{
@@ -34,6 +34,7 @@ box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
 export const DataUrlContainer = styled.a
 `
 color: #5181b8;
+overflow: hidden;
 text-decoration: none;
 
     &:hover{
@@ -46,9 +47,10 @@ text-decoration: none;
 export const LoadContainer = styled.div
 `
 width: 240px;
-height: 100vh;
 display: flex;
+overflow: hidden;
 align-items: center;
+height: calc(100vh - 141px);
 justify-content: space-between;
 `
 
@@ -86,4 +88,12 @@ background-color: black;
         background-color: #e0e0e0;
     }
 }
+`
+
+export const ContainerInfo = styled.div
+`
+width: 100%;
+display: flex;
+align-items: center;
+flex-direction: column;
 `

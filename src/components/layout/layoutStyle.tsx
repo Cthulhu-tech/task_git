@@ -42,5 +42,10 @@ margin: 10px;
 export const ImageContainer = styled.div
 `
 display: flex;
+overflow: auto;
 align-items: center;
+@media screen and (max-width: 576px){
+    width: 100%;
+    justify-content: space-between;
+}
 `

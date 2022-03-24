@@ -18,7 +18,7 @@ export const DataLoader = (state = initialState, action: PayloadAction<urlParams
         case  LOAD_DATA:
             return {data: action.payload, load: true}
         case LOAD_CHECK:
-            return {data: state.data, load: false}
+            return {data: state.data, load: action.payload}
         default:
             return state;
     }
@@ -26,4 +26,4 @@ export const DataLoader = (state = initialState, action: PayloadAction<urlParams
 }
 
 export const addData = (payload:urlParams) => ({type: LOAD_DATA, payload});
-export const checkData = (payload:string) => ({type: LOAD_CHECK, payload});
+export const checkData = (payload:boolean) => ({type: LOAD_CHECK, payload});

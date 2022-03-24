@@ -5,7 +5,9 @@ import { DataView } from "../../components/dataView/dataView";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DataState, urlParams } from "../../type/type";
-import { Button } from "../../style/mixin";
+import { Button, Image, Paragraph } from "../../style/mixin";
+import { AllDataType, ForksData } from "../../interface/interaface";
+import { ContainerInfo } from "../../components/dataView/dataVIewStyle";
 
 
 
@@ -18,7 +20,7 @@ export const ResultPage = () => {
     const owner = searchParams.get("owner");
     const page = Number(searchParams.get("page"));
     const repository = searchParams.get("repository");
-    const data = useSelector((state:DataState) => state);
+    const data  = useSelector((state:{dataLoad: ForksData, linkGet: string[]}) => state);
 
     const nextPage = () => {
         if(page && owner && repository)
@@ -44,9 +46,12 @@ export const ResultPage = () => {
     }
 
     const Pagenation = useCallback(() => {
-
+        const prev = data.linkGet;
+        const last = data.linkGet;
+        console.log(last, prev);
         return  <PagenationContainer>
                     <Button
+                        
                         onClick={prevPage}
                         props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
                     >{"<"}</Button>
@@ -56,7 +61,7 @@ export const ResultPage = () => {
                     >{">"}</Button>
                 </PagenationContainer>
 
-    },[]);
+    },[data]);
 
     const FirstLoadData = () => {
 
@@ -64,6 +69,15 @@ export const ResultPage = () => {
         if(page && owner && repository){
             dispatch(dataFetch({owner, repository, PageConvert: `${page}`}));
         }
+
+    }
+
+    const NotFound = () => {
+
+        return  <ContainerInfo>
+                    <Paragraph props={{size: 16}}>This page was not found</Paragraph>
+                    <Image props={{width: 250}} src="./image/error.png"/>
+                </ContainerInfo>
 
     }
 
@@ -75,9 +89,8 @@ export const ResultPage = () => {
     },[data, searchParams]);
 
     return  <ResultContainer>
-
-                {page > 0 ? <DataView/> : <>takou</>}
-                {page > 0 && <Pagenation/>}
+                {page > 0 ? <DataView/> : <NotFound/>}
+                {page > 0 && (data.dataLoad.data as AllDataType[]).length > 0 && data.dataLoad.load  && <Pagenation/>}
             </ResultContainer>
 
 }
