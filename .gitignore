@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+.env
+/.env
 # dependencies
 /node_modules
 /.pnp
@@ -12,7 +13,6 @@
 /build
 
 # misc
-.env
 .env.REACT_APP_SECRET_TOKEN
 .DS_Store
 .env.local

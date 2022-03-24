@@ -8,6 +8,7 @@ import { DataState, urlParams } from "../../type/type";
 import { Button, Image, Paragraph } from "../../style/mixin";
 import { AllDataType, ForksData } from "../../interface/interaface";
 import { ContainerInfo } from "../../components/dataView/dataVIewStyle";
+import { LocalStorage } from "../../components/localstorage/localstorage";
 
 
 
@@ -93,6 +94,7 @@ export const ResultPage = () => {
     },[data, searchParams]);
 
     return  <ResultContainer>
+                <LocalStorage/>
                 {page > 0 ? <DataView/> : <NotFound/>}
                 {page > 0 && (data.dataLoad.data as AllDataType[]).length > 0 && data.dataLoad.load  && <Pagenation/>}
             </ResultContainer>

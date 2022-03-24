@@ -21,4 +21,3 @@ background-color: white;
 width: calc(100% - 20px);
 justify-content: space-evenly;
 `
-
