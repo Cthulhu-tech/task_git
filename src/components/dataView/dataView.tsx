@@ -21,9 +21,7 @@ export const DataView = () => {
 
         dispatch(
                 addDataLocal(
-                         JSON.parse((AddToLocalStorage(url) as string))
-                    )
-                )
+                         JSON.parse((AddToLocalStorage(url) as string))))
     }
     
     const AllData = () => {
