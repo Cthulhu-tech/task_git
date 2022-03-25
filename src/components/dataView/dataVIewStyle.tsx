@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const DataContainer = styled.div
 `
 width: 100%;
+max-width: 500px;
 `
 
 export const DataInfoContainer = styled.div

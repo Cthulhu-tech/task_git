@@ -7,31 +7,25 @@ import { useEffect } from "react";
 import { AddContainer } from "../localstorage/localstorageStyle";
 import { AddToLocalStorage } from "../../utils/addLocalStorageLogic";
 import { addDataLocal } from "../../store/reducer/localstorageDataLoader";
+import { LocalData } from "../../type/type";
 
 export const DataView = () => {
     
     const dispatch = useDispatch();
-    const data  = useSelector((state:{dataLoad: ForksData}) => state.dataLoad);
+    const data  = useSelector((state:{dataLoad: ForksData, storage: {data :LocalData}}) => state);
 
     useEffect(() => {
 
     },[data]);
-
-    const addLocalStorageLogic = (url: string) => {
-
-        dispatch(
-                addDataLocal(
-                         JSON.parse((AddToLocalStorage(url) as string))))
-    }
     
     const AllData = () => {
-        if((data.data as BadRequest).message) {
+        if((data.dataLoad.data as BadRequest).message) {
             return  <DataContainer>
-                        <Paragraph props={{size: 16}}>{(data.data as BadRequest).message}</Paragraph>
+                        <Paragraph props={{size: 16}}>{(data.dataLoad.data as BadRequest).message}</Paragraph>
                     </DataContainer>
         }else{
             return  <DataContainer>
-                    {(data.data as AllDataType[]).map((info:AllDataType) => {
+                    {(data.dataLoad.data as AllDataType[]).map((info:AllDataType) => {
                             return <DataInfoContainer key={info.id}>
                                         <DataUrlContainer href={info.html_url}>
                                             <Paragraph props={{size: 16}}>forks name: {info.full_name}</Paragraph>
@@ -41,11 +35,33 @@ export const DataView = () => {
                                             <Image props={{width: 30}} src={info.owner.avatar_url}/>
                                         </ImageContainer>
                                         <Paragraph props={{size: 16, color: '#5b5b66'}}>Star: {info.stargazers_count}</Paragraph>
-                                        <AddContainer onClick={() => addLocalStorageLogic(info.url)}>Favorite</AddContainer>
+                                        <AddContainer onClick={() => dispatch(addDataLocal(JSON.parse((AddToLocalStorage(info.html_url) as string))))}>
+                                            {findUrl(info.html_url)}
+                                        </AddContainer>
                                     </DataInfoContainer>
                     })}
                     </DataContainer>
         }
+    }
+
+    const findUrl = (url: string) => {
+
+        if(data.storage.data){
+
+            for(let i = 0; i < (data.storage.data.url as string[]).length; i++) {
+
+                if((data.storage.data.url as string[])[i] === url){
+                    
+                    return "remove";
+
+                }
+
+            }
+
+        }
+
+        return "add";
+
     }
 
     const Load = () => {
@@ -69,9 +85,9 @@ export const DataView = () => {
 
     }
 
-    return (data.data as AllDataType[]).length <= 0 && data.load 
+    return (data.dataLoad.data as AllDataType[]).length <= 0 && data.dataLoad.load 
     ? <EmptyData/>
-    : data.load 
+    : data.dataLoad.load 
     ? <AllData/> 
     : <Load/>;
 

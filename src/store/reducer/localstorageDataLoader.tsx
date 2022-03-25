@@ -19,7 +19,7 @@ export const DataLoaderLocal = (state = initialState, action: PayloadAction<Loca
         case  LOAD_DATA_LOCAL:
         return {data: {...(state.url as AllDataType[]) , ...action.payload}, load: true}
         case LOAD_CHECK_LOCAL:
-            return {data: state.url, load: action.payload}
+            return {data: {...(state.url as AllDataType[])}, load: action.payload}
         case LOAD_FETST_DATA:
             return {data: action.payload, load: true}
         default:

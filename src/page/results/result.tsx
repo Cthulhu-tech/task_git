@@ -4,7 +4,7 @@ import { dataFetch } from "../../store/asyncActions/dataForks";
 import { DataView } from "../../components/dataView/dataView";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DataState, urlParams } from "../../type/type";
+import { urlParams } from "../../type/type";
 import { Button, Image, Paragraph } from "../../style/mixin";
 import { AllDataType, ForksData } from "../../interface/interaface";
 import { ContainerInfo } from "../../components/dataView/dataVIewStyle";
@@ -91,10 +91,12 @@ export const ResultPage = () => {
 
     },[data, searchParams]);
 
-    return  <ResultContainer>
+    return  <>
+            <ResultContainer>
                 <LocalStorage/>
                 {page > 0 ? <DataView/> : <NotFound/>}
-                {page > 0 && (data.dataLoad.data as AllDataType[]).length > 0 && data.dataLoad.load  && <Pagenation/>}
             </ResultContainer>
+            {page > 0 && (data.dataLoad.data as AllDataType[]).length > 0 && data.dataLoad.load  && <Pagenation/>}
+            </>
 
 }

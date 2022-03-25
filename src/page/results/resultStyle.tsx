@@ -4,10 +4,17 @@ export const ResultContainer = styled.section
 `
 width: 100%;
 display: flex;
-align-items: center;
-flex-direction: column;
-justify-content: space-between;
+align-items: flex-start;
+flex-direction: row-reverse;
+justify-content: space-around;
 min-height: calc(100vh - 141px);
+
+@media (max-width: 577px) {
+
+    align-items: center;
+    flex-direction: column;
+
+}
 `
 
 export const PagenationContainer = styled.div
