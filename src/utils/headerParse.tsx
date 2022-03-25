@@ -10,7 +10,7 @@ export const headerParser = (link: string) => {
 
     for(let i = 0; i < header.length; i++){
 
-        header[i] = (header[i][0] as string).split('&')[1].replace(/[><a-zA-Z=]/g, '');
+        header[i] = (header[i][0] as string).split('&')[1].replace(/[><a-zA-Z=]/g, ''); // для выяснения последней страницы
 
     }
 

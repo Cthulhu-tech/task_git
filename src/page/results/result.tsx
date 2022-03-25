@@ -10,8 +10,6 @@ import { AllDataType, ForksData } from "../../interface/interaface";
 import { ContainerInfo } from "../../components/dataView/dataVIewStyle";
 import { LocalStorage } from "../../components/localstorage/localstorage";
 
-
-
 export const ResultPage = () => {
     
     const dispatch = useDispatch();
