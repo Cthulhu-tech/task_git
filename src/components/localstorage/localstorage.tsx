@@ -6,7 +6,7 @@ import { LocalStorageContainer } from "./localstorageStyle"
 export const LocalStorage = () => {
 
     const [load, setLoad] = useState(true);
-    const data:any = useSelector((state:any) => state );
+    const data:any = useSelector((state:any) => state.storage );
 
     const dataLoad = () => {
 

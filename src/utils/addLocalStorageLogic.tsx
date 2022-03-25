@@ -6,12 +6,26 @@ export const AddToLocalStorage = (url:string) => {
     let favorite:LocalData = {url: [""]};
     let dataLocalstorage = localStorage.getItem("favoriteForks");
 
-    if(dataLocalstorage){
+
+    if(typeof dataLocalstorage === "string"){
 
         favorite = JSON.parse(dataLocalstorage);
 
+
+    }else{
+
+        const data = JSON.stringify(
+            {url: 
+                [url]
+            });
+
+        localStorage.setItem( "favoriteForks" , data);
+        
+        return data;
+
     }
-    if(!favorite || favorite?.url?.length === 0){
+
+    if(favorite?.url?.length === 0){
 
         const data = JSON.stringify(
             {url: 
@@ -46,7 +60,7 @@ export const AddToLocalStorage = (url:string) => {
         
         localStorage.setItem( "favoriteForks" , data);
 
-        return data;
+        return [data];
 
     }
 
@@ -60,6 +74,6 @@ export const AddToLocalStorage = (url:string) => {
         
         localStorage.setItem( "favoriteForks" , data);
 
-        return data;
+        return [data];
     }
 }

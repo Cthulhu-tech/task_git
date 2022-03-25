@@ -1,24 +1,24 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { AllDataType, ForksData } from "../../interface/interaface";
+import { AllDataType, ForksData, LocalStorageData } from "../../interface/interaface";
 import { LocalData, urlParams } from "../../type/type";
 
 const LOAD_DATA_LOCAL = "loadDatalocal";
 const LOAD_CHECK_LOCAL = "loadChecklocal";
 
-const initialState:ForksData | {data: []} = {
+const initialState:LocalStorageData = {
 
-    data: [],
+    url: [],
     load: false
     
 }
 
-export const DataLoaderLocal = (state = initialState, action: PayloadAction<ForksData[]>) => {
+export const DataLoaderLocal = (state = initialState, action: PayloadAction<LocalStorageData[]>) => {
 
     switch (action.type) {
         case  LOAD_DATA_LOCAL:
-            return {data: [ ...(state.data as AllDataType[]) , ...action.payload], load: true}
+        return {data: {...(state.url as AllDataType[]) , ...action.payload}, load: true}
         case LOAD_CHECK_LOCAL:
-            return {data: state.data, load: action.payload}
+            return {data: state.url, load: action.payload}
         default:
             return state;
     }

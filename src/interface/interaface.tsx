@@ -4,6 +4,13 @@ export interface ForksData {
     load: boolean;
 }
 
+export interface LocalStorageData {
+
+    url: [],
+    load: false
+
+}
+
 export interface BadRequest {
 
     message:           string;

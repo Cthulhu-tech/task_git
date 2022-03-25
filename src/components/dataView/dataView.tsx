@@ -19,10 +19,11 @@ export const DataView = () => {
 
     const addLocalStorageLogic = (url: string) => {
 
-        console.log( AddToLocalStorage(url))
-
-
-
+        dispatch(
+                addDataLocal(
+                         JSON.parse((AddToLocalStorage(url) as string))
+                    )
+                )
     }
     
     const AllData = () => {
