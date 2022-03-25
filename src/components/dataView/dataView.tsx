@@ -2,18 +2,28 @@ import { ContainerInfo, DataContainer, DataInfoContainer, DataUrlContainer, Load
 import { AllDataType, BadRequest, ForksData } from "../../interface/interaface";
 import { ImageContainer } from "../layout/layoutStyle";
 import { Image, Paragraph } from "../../style/mixin";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { AddContainer } from "../localstorage/localstorageStyle";
 import { AddToLocalStorage } from "../../utils/addLocalStorageLogic";
+import { addDataLocal } from "../../store/reducer/localstorageDataLoader";
 
 export const DataView = () => {
+    
+    const dispatch = useDispatch();
     const data  = useSelector((state:{dataLoad: ForksData}) => state.dataLoad);
 
     useEffect(() => {
 
     },[data]);
 
+    const addLocalStorageLogic = (url: string) => {
+
+        console.log( AddToLocalStorage(url))
+
+
+
+    }
     
     const AllData = () => {
         if((data.data as BadRequest).message) {
@@ -32,7 +42,7 @@ export const DataView = () => {
                                             <Image props={{width: 30}} src={info.owner.avatar_url}/>
                                         </ImageContainer>
                                         <Paragraph props={{size: 16, color: '#5b5b66'}}>Star: {info.stargazers_count}</Paragraph>
-                                        <AddContainer onClick={() => AddToLocalStorage(info.url)}>Favorite</AddContainer>
+                                        <AddContainer onClick={() => addLocalStorageLogic(info.url)}>Favorite</AddContainer>
                                     </DataInfoContainer>
                     })}
                     </DataContainer>

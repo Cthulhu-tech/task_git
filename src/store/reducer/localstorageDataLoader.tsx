@@ -1,9 +1,9 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AllDataType, ForksData } from "../../interface/interaface";
-import { urlParams } from "../../type/type";
+import { LocalData, urlParams } from "../../type/type";
 
-const LOAD_DATA_LOCAL = "loadData";
-const LOAD_CHECK_LOCAL = "loadCheck";
+const LOAD_DATA_LOCAL = "loadDatalocal";
+const LOAD_CHECK_LOCAL = "loadChecklocal";
 
 const initialState:ForksData | {data: []} = {
 
@@ -25,5 +25,5 @@ export const DataLoaderLocal = (state = initialState, action: PayloadAction<Fork
 
 }
 
-export const addDataLocal = (payload:urlParams) => ({type: LOAD_DATA_LOCAL, payload});
+export const addDataLocal = (payload:LocalData) => ({type: LOAD_DATA_LOCAL, payload});
 export const checkDataLocal = (payload:boolean) => ({type: LOAD_CHECK_LOCAL, payload});

@@ -1,31 +1,65 @@
-export const AddToLocalStorage = async (url:string) => {
+import { LocalData } from "../type/type";
 
-    let favorite:any = "";
+export const AddToLocalStorage = (url:string) => {
+
     let findUndefined = false;
-    const dataLocalstorage = localStorage.getItem("favoriteCity");
-    if(dataLocalstorage !== null){
+    let favorite:LocalData = {url: [""]};
+    let dataLocalstorage = localStorage.getItem("favoriteForks");
+
+    if(dataLocalstorage){
+
         favorite = JSON.parse(dataLocalstorage);
+
     }
     if(!favorite || favorite?.url?.length === 0){
-        return localStorage.setItem( "favoriteCity" , 
-            JSON.stringify(
-                {url: 
-                    [url]
-                })
-            );
+
+        const data = JSON.stringify(
+            {url: 
+                [url]
+            });
+
+        localStorage.setItem( "favoriteForks" , data);
+        
+        return data;
+        
     }
-    favorite.url = favorite?.url.filter((data:string) => {
+
+    favorite.url = (favorite?.url as string[]).filter((data:string) => {
+
         if(data === url){
+
             findUndefined = true;
+
         }
+
         if(data !== url){
+
             return data;
+
         }
+
     })
-    if(findUndefined) return  localStorage.setItem( "favoriteCity" , JSON.stringify({url:[ ... Array.from(new Set([...favorite.url])) ] }))
+
+    if(findUndefined){
+
+        const data = JSON.stringify({url:[ ... Array.from(new Set([...favorite.url])) ] });
+        
+        localStorage.setItem( "favoriteForks" , data);
+
+        return data;
+
+    }
+
     if(favorite?.url?.length > 0){
-        return localStorage.setItem( "favoriteCity" , JSON.stringify({ 
-            url:[ ... Array.from(new Set([...favorite.url, url]))  ] 
-        }));
+
+        const data = JSON.stringify({ 
+
+            url:[ ... Array.from(new Set([...favorite.url, url]))  ]
+
+        });
+        
+        localStorage.setItem( "favoriteForks" , data);
+
+        return data;
     }
 }

@@ -58,3 +58,7 @@ export type DataState = {
     dataLoad: ReducerDataLoader
 
 }
+
+export type LocalData = {
+    url: string[] | null
+}

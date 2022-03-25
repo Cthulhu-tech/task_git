@@ -1,29 +1,35 @@
-export const headerParser = (link: string) => {
+export const headerParser = (link: string | null) => {
 
-    let header:Array<string | Array<string>> = link.split(',');
+    if(link){
 
-    for(let i = 0; i < header.length; i++){
-        
-        header[i] = (header[i] as string).split(';');
+        let header:Array<string | Array<string>> = link.split(',');
 
-    }
-
-    for(let i = 0; i < header.length; i++){
-
-        header[i] = (header[i][0] as string).split('&')[1].replace(/[><a-zA-Z=]/g, ''); // для выяснения последней страницы
-
-    }
-
-    if(header.length === 4){
-
-        return header[2];
-
-    }
+        for(let i = 0; i < header.length; i++){
+            
+            header[i] = (header[i] as string).split(';');
     
-
-    if(header.length === 2){
-        return header[header.length - 1];
+        }
+    
+        for(let i = 0; i < header.length; i++){
+    
+            header[i] = (header[i][0] as string).split('&')[1].replace(/[><a-zA-Z=]/g, ''); // для выяснения последней страницы
+    
+        }
+    
+        if(header.length === 4){
+    
+            return header[2];
+    
+        }
+        
+    
+        if(header.length === 2){
+            return header[header.length - 1];
+    
+        }
 
     }
+
+    return "";
 
 }

@@ -8,9 +8,7 @@ export const dataFetch = (payload: urlParams) => {
     let page = payload.PageConvert || 1;
     let owner = payload.owner;
     let repoName = payload.repository;
-    if(page <= 0) {
-        page = 1;
-    }
+    
     return (dispatch:any) => {
 
         dispatch(checkData(false));
