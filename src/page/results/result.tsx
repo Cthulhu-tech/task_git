@@ -9,6 +9,7 @@ import { Button, Image, Paragraph } from "../../style/mixin";
 import { AllDataType, ForksData } from "../../interface/interaface";
 import { ContainerInfo } from "../../components/dataView/dataVIewStyle";
 import { LocalStorage } from "../../components/localstorage/localstorage";
+import { Pagination } from "../../utils/pageGenerator";
 
 export const ResultPage = () => {
     
@@ -44,6 +45,26 @@ export const ResultPage = () => {
         navigate(`/result?page=${url.PageConvert}&owner=${url.owner}&repository=${url.repository}`);
     }
 
+    const onPressPage = (numberPage: number | string) => {
+        if(page && owner && repository){
+            NavigateGenerator({owner, repository, PageConvert: numberPage.toString()});
+            dispatch(dataFetch({owner, repository, PageConvert: numberPage.toString()}));
+        }
+    }
+
+    const PageEterable = () => {
+        return  <>{
+                    [...Pagination(page, 114)].map((page:number | string) => {
+                    return  <Button
+                                key={page}
+                                onClick={() => page !== '...' && onPressPage(page)}
+                                props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
+                            >{page}</Button>
+                    })
+                }</>
+
+    }
+
     const Pagenation = useCallback(() => {
 
         const last = Number(data.linkGet.link)
@@ -55,7 +76,7 @@ export const ResultPage = () => {
                         onClick={prevPage}
                         props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
                     >{"<"}</Button>}
-                    
+                    <PageEterable/>
                     {last >= page &&
                     <Button
                         onClick={nextPage}
@@ -85,7 +106,7 @@ export const ResultPage = () => {
     }
 
     useEffect(() => {
-
+        console.log(Pagination(page, 114))
         if(load)
             FirstLoadData();
 
