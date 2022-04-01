@@ -53,8 +53,11 @@ export const ResultPage = () => {
     }
 
     const PageEterable = () => {
+        
+        const last = Number(data.linkGet.link);
+
         return  <>{
-                    [...Pagination(page, 114)].map((page:number | string) => {
+                    [...Pagination(1, last)].map((page:number | string) => {
                     return  <Button
                                 key={page}
                                 onClick={() => page !== '...' && onPressPage(page)}
@@ -106,7 +109,7 @@ export const ResultPage = () => {
     }
 
     useEffect(() => {
-        console.log(Pagination(page, 114))
+        console.log(data.linkGet.link)
         if(load)
             FirstLoadData();
 
