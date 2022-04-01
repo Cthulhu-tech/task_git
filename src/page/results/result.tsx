@@ -57,7 +57,7 @@ export const ResultPage = () => {
         const last = Number(data.linkGet.link);
 
         return  <>{
-                    [...Pagination(1, last)].map((page:number | string) => {
+                    [...Pagination(page, last)].map((page:number | string) => {
                     return  <Button
                                 key={page}
                                 onClick={() => page !== '...' && onPressPage(page)}
