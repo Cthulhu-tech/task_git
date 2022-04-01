@@ -2,14 +2,14 @@ import { PagenationContainer, ResultContainer } from "./resultStyle";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { dataFetch } from "../../store/asyncActions/dataForks";
 import { DataView } from "../../components/dataView/dataView";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { urlParams } from "../../type/type";
 import { Button, Image, Paragraph } from "../../style/mixin";
 import { AllDataType, ForksData } from "../../interface/interaface";
 import { ContainerInfo } from "../../components/dataView/dataVIewStyle";
 import { LocalStorage } from "../../components/localstorage/localstorage";
-import { Pagination } from "../../utils/pageGenerator";
+import { PagenationGenerate } from "../../utils/pageGenerator";
 
 export const ResultPage = () => {
     
@@ -23,7 +23,7 @@ export const ResultPage = () => {
     const data  = useSelector((state:{dataLoad: ForksData, linkGet: {link: string}}) => state);
 
     const nextPage = () => {
-        if(page && owner && repository && Number(data.linkGet.link) > page)
+        if(page && owner && repository && Number(data.linkGet.link) >= page)
             PageSwiting(page + 1);
     }
 
@@ -51,26 +51,10 @@ export const ResultPage = () => {
             dispatch(dataFetch({owner, repository, PageConvert: numberPage.toString()}));
         }
     }
+    const Pagenation = () => {
 
-    const PageEterable = () => {
-        
+        const thisPage = page;
         const last = Number(data.linkGet.link);
-
-        return  <>{
-                    [...Pagination(page, last)].map((page:number | string) => {
-                    return  <Button
-                                key={page}
-                                onClick={() => page !== '...' && onPressPage(page)}
-                                props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
-                            >{page}</Button>
-                    })
-                }</>
-
-    }
-
-    const Pagenation = useCallback(() => {
-
-        const last = Number(data.linkGet.link)
 
         return  <PagenationContainer>
                     {page > 1 &&
@@ -79,7 +63,13 @@ export const ResultPage = () => {
                         onClick={prevPage}
                         props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
                     >{"<"}</Button>}
-                    <PageEterable/>
+                    {PagenationGenerate(page, last).map((page:number | string) => {
+                    return  <Button
+                                key={page}
+                                onClick={() => (page !== '...' && page !== thisPage) && onPressPage(page)}
+                                props={{color: "black", width: 60, height: 40, background: "#f8f8f8", border: "#d3d3d3"}}
+                            >{page}</Button>
+                    })}
                     {last >= page &&
                     <Button
                         onClick={nextPage}
@@ -88,7 +78,7 @@ export const ResultPage = () => {
 
                 </PagenationContainer>
 
-    },[data]);
+    }
 
     const FirstLoadData = () => {
 
@@ -109,11 +99,11 @@ export const ResultPage = () => {
     }
 
     useEffect(() => {
-        console.log(data.linkGet.link)
+
         if(load)
             FirstLoadData();
 
-    },[data, searchParams]);
+    },[data, searchParams, load]);
 
     return  <>
             <ResultContainer>

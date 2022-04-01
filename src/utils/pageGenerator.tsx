@@ -1,7 +1,7 @@
-export const Pagination = (c:number, m:number) => {
+export const PagenationGenerate = (currentPage: number, lastPage: number) => {
 
-    let current = c,
-        last = m,
+    let current = currentPage,
+        last = lastPage,
         delta = 2,
         left = current - delta,
         right = current + delta + 1,
@@ -10,7 +10,7 @@ export const Pagination = (c:number, m:number) => {
         l;
 
     for (let i = 1; i <= last; i++) {
-        if (i == 1 || i == last || i >= left && i < right) {
+        if (((i === 1) || (i === last)) || ((i >= left) && (i < right))) {
             range.push(i);
         }
     }
@@ -28,4 +28,5 @@ export const Pagination = (c:number, m:number) => {
     }
 
     return rangeWithDots;
+
 }

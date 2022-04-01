@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { AllDataType, ForksData, LocalStorageData } from "../../interface/interaface";
-import { LocalData, urlParams } from "../../type/type";
+import { AllDataType, LocalStorageData } from "../../interface/interaface";
+import { LocalData } from "../../type/type";
 
 const LOAD_DATA_LOCAL = "loadDatalocal";
 const LOAD_CHECK_LOCAL = "loadChecklocal";
